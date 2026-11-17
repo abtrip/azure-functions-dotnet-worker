@@ -10,9 +10,14 @@ namespace FunctionApp;
 public class Hello(ILogger<Hello> logger)
 {
     [Function("hello")]
-    public IActionResult HelloImpl([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
-    {
-        logger.LogInformation("C# HTTP trigger function processed a request.");
-        return new OkObjectResult("Welcome to Azure Functions!");
-    }
+  public async Task<IActionResult> HelloImpl(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
+{
+    logger.LogInformation("C# HTTP trigger function processed a request.");
+
+    // Simulate a slow operation: wait for 10 seconds
+    await Task.Delay(10000);
+
+    return new OkObjectResult("Welcome to Azure Functions! Response delayed by 10 seconds.");
+}
 }
