@@ -16,7 +16,7 @@ public class Hello(ILogger<Hello> logger)
     logger.LogInformation("C# HTTP trigger function processed a request.");
 
     // Simulate a slow operation: wait for 10 seconds
-    await Task.Delay(10000);
+    await Task.Delay(50000);
 
     return new OkObjectResult("Welcome to Azure Functions! Response delayed by 10 seconds.");
 }
